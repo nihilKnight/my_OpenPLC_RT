@@ -33,19 +33,19 @@ def create_connection(db_file):
     except Error as e:
         print(e)
 
+
 def insert_st_file(prog_name, prog_descr, prog_file, epoch_time):
 
     (prog_name, prog_descr, prog_file, epoch_time) = sanitize_input(prog_name, prog_descr, prog_file, epoch_time)
 
     conn = create_connection(DB)
-    if (conn != None):
+    if (conn is not None):
         try:
             cur = conn.cursor()
             cur.execute("INSERT INTO Programs (Name, Description, File, Date_upload) VALUES (?, ?, ?, ?)", (prog_name, prog_descr, prog_file, epoch_time))
             conn.commit()
             cur.close()
             conn.close()
-        
         except Error as e:
             print("Error connecting to the database" + str(e))
     else:
