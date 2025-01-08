@@ -1,4 +1,4 @@
-FROM debian:bullseye-20240722
+FROM debian:bullseye
 
 COPY . /workdir
 
